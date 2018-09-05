@@ -27,7 +27,11 @@
 <button title="Read info on image steganography" class="btn btn-sm btn-default" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info"></i> Info</button>
 <hr>
 
-<input autofocus id="input" type="file" class="form-control input-sm"><br>
+<label id="uploadButton" class="btn btn-default btn-lg">
+	<i class="fas fa-upload"></i> Upload Image<input hidden autofocus id="input" type="file" class="form-control input-sm">
+</label>
+
+
 Binary to Encode: <textarea id="textarea1" class="form-control">01100011011000010111010001110011</textarea><br>
 Binary Decoded: <textarea id="textarea2" class="form-control"></textarea><br>
 

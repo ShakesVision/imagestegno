@@ -28,3 +28,12 @@ canvas {
 .btn-primary {
 	color: #fff;
 }
+#uploadButton {
+	display: block;
+	border: 2px solid #339;
+	background-color: #66c;
+	color: #fff;
+}
+#uploadButton:hover {
+	background-color: #339;
+}
