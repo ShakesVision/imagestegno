@@ -49,8 +49,12 @@ function handleButton(getting) {
     for(let i=0, len=imgData.data.length; i<len; i+=4) {
       if(getting) {
         str += imgData.data[i]%2;
+        //str += imgData.data[i+1]%2;
+        //str += imgData.data[i+2]%2;
       } else {
         imgData.data[i] = Math.floor(imgData.data[i]/2)*2 + (strToSet[i/4]=='1' ? 1 : 0);
+        //imgData.data[i+1] = Math.floor(imgData.data[i+1]/2)*2 + (strToSet[i/4+1]=='1' ? 1 : 0);
+        //imgData.data[i+2] = Math.floor(imgData.data[i+2]/2)*2 + (strToSet[i/4+2]=='1' ? 1 : 0);
       }
     }
 
@@ -131,6 +135,7 @@ settings for checkboxes for editing r, g, or b
 setting for editing last bit or 2 bits
 give alert if ran out of room to encode
 option to encode remianing bits with 0, 1, leasve as is, or random
+option to encode every x bits, and option to reverse order of input binary or of encoding
 
 give error alerts if click button with nothjing there
 give error alerts for non binary inside of convert textarea
