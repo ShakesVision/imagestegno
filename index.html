@@ -3,26 +3,35 @@
 <head>
 	<title>Image Encryptor</title>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>  
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>  
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="styles.css">
 
 </head>
 <body>
 
-  <h1>Image Steganography</h1>
-  <button title="Convert Text to Binary" class="btn btn-sm btn-default" data-toggle="modal" data-target="#convertModal"><i class="fas fa-exchange-alt"></i></button>
+<h1>Image Steganography</h1>
+<button title="Convert between text and binary" class="btn btn-sm btn-default" data-toggle="modal" data-target="#convertModal"><i class="fas fa-exchange-alt"></i> Text-Binary Convert</button>
+<button title="Read info on image steganography" class="btn btn-sm btn-default" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info"></i> Info</button>
+<hr>
 
-<input id="input" type="file" ><br>
-<textarea id="textarea1">111110000011111</textarea>
-<textarea id="textarea2"></textarea>
-<canvas id="canvas" style="border: 2px solid #333;"></canvas>
-<canvas id="canvas2" style="border: 2px solid #333;"></canvas>
-<button id="btn1">Set Image Data</button>
-<button id="btn2">Get Image Data</button>
-<button id="downloadButton">Download</button>
-<a download="test.png" id="downloadLink"></a>
+<input autofocus id="input" type="file" class="form-control input-sm"><br>
+Binary to Encode: <textarea id="textarea1" class="form-control">01100011011000010111010001110011</textarea><br>
+Binary Decoded: <textarea id="textarea2" class="form-control"></textarea><br>
+
+<button id="btn1" title="Set image data to entered binary to encode" class="btn btn-sm btn-primary"><i class="fas fa-arrow-circle-right"></i> Encode</button>
+<button id="btn2" title="get image data from upload image into decoded binary" class="btn btn-sm btn-primary"><i class="fas fa-arrow-circle-left"></i> Decode</button><br><br>
+
+Uploaded Image:<br>
+<canvas id="canvas"></canvas><br>
+Encoded Image:<br>
+<canvas id="canvas2"></canvas><br>
+
+<button id="downloadButton" title="Download encoded image" class="btn btn-sm btn-default"><i class="fas fa-download"></i> Download</button><br>
+<a download="test.png" id="downloadLink"></a><br>
 
 
 
@@ -30,17 +39,56 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title"><i class="fas fa-echange-alt"></i> Convert Text to Binary</h4>
+        <h4 class="modal-title"><i class="fas fa-exchange-alt"></i> Convert Between Text and Binary</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        Input
-        <textarea id="convertInput"></textarea><br>
+        Input:<br>
+        <textarea id="convertInput" class="form-control"></textarea><br>
         <input id="convertCheckbox" type="checkbox">Binary to Text<br>
         <input id="fillCheckbox" type="checkbox">Fill Binary Result into Binary Input<br>
-        <button id="convertButton">Convert</button><br>
-        Output
-        <textarea id="convertOutput"></textarea>
+        <button id="getBinaryButton" disabled="true" class="btn btn-sm btn-default">Get Binary from Decoded Binary Input</button><br>
+        <button id="convertButton" class="btn btn-sm btn-primary"><i class="fas fa-exchange-alt"></i> Convert</button><br>
+        Output:<br>
+        <textarea id="convertOutput" class="form-control"></textarea>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="infoModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="fas fa-info"></i> Info About Image Steganography</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+      	<h5>About Image Steganography</h5>
+        Image Steganography is the process of encoding information inside of an image.<br><br>
+        Images each contain many (often millions) of pixels, each of which is a square of a single color.<br><br>
+        Each color can be one of over 17 million different values, as expressed in the RGB color model.<br><br>
+        RGB stands for red, green, and blue, which are the primary colors of light.<br><br>
+        Each color has a value for red between 0 and 255, as well as green and blue.<br><br>
+        255 is used because 0-255 includes 256 numbers, which is 2^8, meaning each color takes 8 1s or 0s, or 8 bits, which is 1 byte.<br><br>
+        Binary works the same way decimal (base 10) does, where the least significant digits are on the right.<br><br>
+        Except in binary each digit's place are powers of 2, not powers of 10. So if the last digit or two are changed, the number remains very similar.<br><br>
+        It would be within 0 or 1 of the original number if only 1 bit is changed, and within 3 of the original number if 2 bits are changed.<br><br>
+        These changes (especially changing only 1 bit) are rather insignificant when comapred to the entire number being between 0 and 255.<br><br>
+        If changed these changes would not appear visable to the human eye.<br><br>
+        If we go through each one of the millions of pixels in an image, and set the least significant digits to either a 0 or 1 of our choice, we've sucessfully encoded binary information.<br><br>
+        This means that when read, we can get those 0s and 1s, or bits (binary digits) back.<br><br>
+        Computers use binary to represent all information, including text, images, and more, so we can encode any information this way, as long as it fits within the image size.<br><br>
+        <h5>Try It!</h5>
+        To encode information, first upload your image, set the binary to encode, and click the "Encode" button. Download your image to save the result.<br><br>
+        If you'd like to encode text information, use the "Text Binary Convert" button, enter the text under "Input", and click "Convert" to get the output in binary under "Output".<br><br>
+        Check "Fill Binary Result into Binary Input" if you'd like to automatically fill it instead of copying and pasting
+        <hr>
+        To decode information, first upload your image, then click the "Decode" button. Be patient for a few seconds while the "Binary Decoded" text fills up with your decoded information.<br><br>
+        To convert the decoded binary into text, use the "Text Binary Convert" button, check the "Binary to Text" checkbox, and click "Convert".<br><br>
+        Click the "Get Binary from Decoded Binary Input" button to get the binary information you decoded instead of copying and pasting. The "Binary to Text" checkbox must be checked to use this feature.<br><br>
+
 
       </div>
     </div>
@@ -48,151 +96,8 @@
 </div>
 
 
+<script src="scripts.js"></script>
 
-<script>
-//https://stackoverflow.com/questions/22087076/how-to-make-a-simple-image-upload-using-javascript-html
-
-let canvas, ctx, canvas2, ctx2, img;
-
-window.onload = function() {
-
-  canvas = document.getElementById('canvas');
-  ctx = canvas.getContext('2d');
-  canvas2 = document.getElementById('canvas2');
-  ctx2 = canvas2.getContext('2d');
-
-	$('#input').on('change', handleFile);
-  $('#btn1').on('click', handleButton1);
-  $('#btn2').on('click', handleButton2);
-  $('#downloadButton').on('click', handleDownload );
-  
-
-  $('#convertButton').on('click', handleConvert );
-
-
-
-}
-
-function handleFile(evt){
-  img = new Image;
-  img.onload = function() {    
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0);
-  }
-  img.src =  URL.createObjectURL(evt.target.files[0]);
-
-}
-
-function handleButton1() {
-  handleButton(false);
-}
-function handleButton2() {
-  handleButton(true);
-}
-
-
-function handleButton(getting) {
-    if(!img) {
-      return;
-    }
-
-    let str = '';
-    let strToSet = $('#textarea1').val();
-    let imgData = ctx.getImageData(0, 0, img.width, img.height);
-
-    for(let i=0, len=imgData.data.length; i<len; i+=4) {
-
-      if(getting) {
-        str += imgData.data[i]%2;
-      } else {
-        imgData.data[i] = Math.floor(imgData.data[i]/2)*2 + (strToSet[i/4]=='1' ? 1 : 0);
-      }
-      
-    }
-
-    if(getting) {
-      $('#textarea2').val(str);      
-    } else {
-      canvas2.width = img.width;
-      canvas2.height = img.height;
-      ctx2.putImageData(imgData,0,0);      
-    }
-
-}
-
-function handleDownload() {
-  if(!img) {
-      return;
-    }
-  let link = document.getElementById('downloadLink');
-  link.href = canvas2.toDataURL();
-  link.download = 'image.png';
-  link.click();
-}
-
-function handleConvert() {
-  let output = $('#convertOutput');
-  let input = $('#convertInput').val();
-  console.log(input);
-  output.val('');
-
-  if($('#convertCheckbox').is(':checked') ) {
-    output.val(binaryToString(input) );
-  } else {
-    output.val(stringToBinary(input) );    
-    if($('#fillCheckbox').is(':checked') ) {
-      $('#textarea1').val(output.val() );
-    }
-  }
-
-
-}
-
-
-//https://ourcodeworld.com/articles/read/380/how-to-convert-a-binary-string-into-a-readable-string-and-vice-versa-with-javascript
-function stringToBinary(str) {
-    function zeroPad(num) {
-        return '00000000'.slice(String(num).length) + num;
-    }
-    return str.replace(/[\s\S]/g, function(str) {
-        str = zeroPad(str.charCodeAt().toString(2));
-        return str;
-    });
-};
-
-function binaryToString(str) {
-    str = str.replace(/\s+/g, ''); //remove spaces
-    str = str.match(/.{1,8}/g).join(' '); //add space every 8 chars
-
-    let newBinary = str.split(' ');
-    let binaryCode = [];
-
-    for (i=0; i<newBinary.length; i++) {
-        binaryCode.push(String.fromCharCode(parseInt(newBinary[i], 2) ) );
-    }    
-    return binaryCode.join('');
-}
-
-
-/* TODO
-explain how stegonography works
-links to encode characters into binary
-
-OPTIONS
-settings for checkboxes for editing r, g, or b
-setting for editing last bit or 2 bits
-give alert if ran out of room to encode
-option to encode remianing bits with 0, 1, leasve as is, or random
-
-give error alerts if click button with nothjing there
-
-
-refresh, email, donate, night, fullscreen
-*/
-
-
-</script>
 
 </body>
 </html>
