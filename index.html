@@ -22,28 +22,28 @@
 </head>
 <body>
 
-<h1>Image Steganography</h1>
+<h1><i class="fas fa-image"></i> Image Steganography <i class="fas fa-user-secret"></i></h1>
 <button title="Convert between text and binary" class="btn btn-sm btn-default" data-toggle="modal" data-target="#convertModal"><i class="fas fa-exchange-alt"></i> Text-Binary Convert</button>
 <button title="Read info on image steganography" class="btn btn-sm btn-default" data-toggle="modal" data-target="#infoModal"><i class="fas fa-info"></i> Info</button>
 <hr>
 
 <label id="uploadButton" class="btn btn-default btn-lg">
-	<i class="fas fa-upload"></i> Upload Image<input hidden autofocus id="input" type="file" class="form-control input-sm">
+	<i class="fas fa-upload"></i> Upload Image <i class="fas fa-file-image"></i><input hidden autofocus id="input" type="file" class="form-control input-sm">
 </label>
 
 
 Binary to Encode: <textarea id="textarea1" class="form-control">01100011011000010111010001110011</textarea><br>
 Binary Decoded: <textarea id="textarea2" class="form-control"></textarea><br>
 
-<button id="btn1" title="Set image data to entered binary to encode" class="btn btn-sm btn-primary"><i class="fas fa-arrow-circle-right"></i> Encode</button>
-<button id="btn2" title="get image data from upload image into decoded binary" class="btn btn-sm btn-primary"><i class="fas fa-arrow-circle-left"></i> Decode</button><br><br>
+<button id="btn1" title="Set image data to entered binary to encode" class="btn btn-sm btn-primary"><i class="fas fa-eye-slash"></i> Encode <i class="fas fa-arrow-circle-right"></i></button>
+<button id="btn2" title="get image data from upload image into decoded binary" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i> Decode <i class="fas fa-arrow-circle-left"></i></button><br><br>
 
 Uploaded Image:<br>
 <canvas id="canvas"></canvas><br>
 Encoded Image:<br>
 <canvas id="canvas2"></canvas><br>
 
-<button id="downloadButton" title="Download encoded image" class="btn btn-sm btn-default"><i class="fas fa-download"></i> Download</button><br>
+<button id="downloadButton" title="Download encoded image" class="btn btn-sm btn-default"><i class="fas fa-download"></i> Download Image <i class="fas fa-file-image"></i></button><br>
 <a download="test.png" id="downloadLink"></a><br>
 
 
