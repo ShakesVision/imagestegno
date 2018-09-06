@@ -46,15 +46,19 @@ function handleButton(getting) {
     let strToSet = $('#textarea1').val();
     let imgData = ctx.getImageData(0, 0, img.width, img.height);
 
+    let usingR = $('#rCheckbox').is(':checked');
+    let usingG = $('#gCheckbox').is(':checked');
+    let usingB = $('#bCheckbox').is(':checked');
+
     for(let i=0, j=0, len=imgData.data.length; i<len; i+=4, j++) {
       if(getting) {
-        str += imgData.data[i]%2; //r
-        str += imgData.data[i+1]%2; //g
-        str += imgData.data[i+2]%2; //b
+        if(usingR) str += imgData.data[i]%2; //r
+        if(usingG) str += imgData.data[i+1]%2; //g
+        if(usingB) str += imgData.data[i+2]%2; //b
       } else {
-        imgData.data[i] = Math.floor(imgData.data[i]/2)*2 + (strToSet[j++]=='1' ? 1 : 0); //r
-        imgData.data[i+1] = Math.floor(imgData.data[i+1]/2)*2 + (strToSet[j++]=='1' ? 1 : 0); //g
-        imgData.data[i+2] = Math.floor(imgData.data[i+2]/2)*2 + (strToSet[j++]=='1' ? 1 : 0); //b
+        if(usingR) imgData.data[i] = Math.floor(imgData.data[i]/2)*2 + (strToSet[j++]=='1' ? 1 : 0); //r
+        if(usingG) imgData.data[i+1] = Math.floor(imgData.data[i+1]/2)*2 + (strToSet[j++]=='1' ? 1 : 0); //g
+        if(usingB) imgData.data[i+2] = Math.floor(imgData.data[i+2]/2)*2 + (strToSet[j++]=='1' ? 1 : 0); //b
       }
     }
 
