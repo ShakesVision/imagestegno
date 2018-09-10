@@ -50,17 +50,33 @@ function handleButton(getting) {
     let usingG = $('#gCheckbox').is(':checked');
     let usingB = $('#bCheckbox').is(':checked');
 
-    for(let i=0, j=0, len=imgData.data.length; i<len; i+=4, j++) {
+    let i, j, len;
+    for(i=0, j=0, len=strToSet.length; i<len; i+=4, j++) {
       if(getting) {
-        if(usingR) str += imgData.data[i]%2; //r
-        if(usingG) str += imgData.data[i+1]%2; //g
-        if(usingB) str += imgData.data[i+2]%2; //b
+        if(usingR) str += (imgData.data[i]%2).toString(); //r
+        if(usingG) str += (imgData.data[i+1]%2).toString(); //g
+        if(usingB) str += (imgData.data[i+2]%2).toString(); //b
       } else {
         if(usingR) imgData.data[i] = Math.floor(imgData.data[i]/2)*2 + (strToSet[j++]=='1' ? 1 : 0); //r
         if(usingG) imgData.data[i+1] = Math.floor(imgData.data[i+1]/2)*2 + (strToSet[j++]=='1' ? 1 : 0); //g
         if(usingB) imgData.data[i+2] = Math.floor(imgData.data[i+2]/2)*2 + (strToSet[j++]=='1' ? 1 : 0); //b
       }
     }
+
+    //set remaining bits if setting and not leaving as is
+    let val = $('#remainingSelect').val();
+    if(!getting && val!=-1) {
+      for(len=imgData.data.length; i<len; i+=4, j++) {
+        //vals to fill this pixel with. either random, all 0s, or all 1s
+        let vals = val==2? [Math.floor(Math.random()*2),Math.floor(Math.random()*2),Math.floor(Math.random()*2)] : [val,val,val];
+        if(usingR) imgData.data[i] = Math.floor(imgData.data[i]/2)*2 + (vals[0]); //r
+        if(usingG) imgData.data[i+1] = Math.floor(imgData.data[i+1]/2)*2 + (vals[1]); //g
+        if(usingB) imgData.data[i+2] = Math.floor(imgData.data[i+2]/2)*2 + (vals[2]); //b
+      }
+    }
+
+    /*        
+        let default = val==2? 1*Math.floor(Math.random()*2) : val;*/
 
     if(getting) {
       $('#textarea2').val(str);      
@@ -132,10 +148,9 @@ function handleGetBinary() {
 
 
 /* TODO
-make so encodes r, g, and b
+
 
 OPTIONS
-settings for checkboxes for editing r, g, or b
 setting for editing last bit or 2 bits
 give alert if ran out of room to encode
 option to encode remianing bits with 0, 1, leasve as is, or random
