@@ -50,33 +50,36 @@ function handleButton(getting) {
     let usingG = $('#gCheckbox').is(':checked');
     let usingB = $('#bCheckbox').is(':checked');
 
-    let i, j, len;
-    for(i=0, j=0, len=strToSet.length; i<len; i+=4, j++) {
-      if(getting) {
+
+    if(getting) { //decoding
+      let i, len;
+      for(i=0, len=imgData.data.length; i<len; i+=4) {
         if(usingR) str += (imgData.data[i]%2).toString(); //r
         if(usingG) str += (imgData.data[i+1]%2).toString(); //g
         if(usingB) str += (imgData.data[i+2]%2).toString(); //b
-      } else {
+      }
+    } else { //encoding data
+      let i, j, len;
+      //set img to input string
+      for(i=0, j=0, len=4*strToSet.length; i<len; i+=4) { //deleted j++
         if(usingR) imgData.data[i] = Math.floor(imgData.data[i]/2)*2 + (strToSet[j++]=='1' ? 1 : 0); //r
         if(usingG) imgData.data[i+1] = Math.floor(imgData.data[i+1]/2)*2 + (strToSet[j++]=='1' ? 1 : 0); //g
         if(usingB) imgData.data[i+2] = Math.floor(imgData.data[i+2]/2)*2 + (strToSet[j++]=='1' ? 1 : 0); //b
       }
-    }
-
-    //set remaining bits if setting and not leaving as is
-    let val = $('#remainingSelect').val();
-    if(!getting && val!=-1) {
-      for(len=imgData.data.length; i<len; i+=4, j++) {
-        //vals to fill this pixel with. either random, all 0s, or all 1s
-        let vals = val==2? [Math.floor(Math.random()*2),Math.floor(Math.random()*2),Math.floor(Math.random()*2)] : [val,val,val];
-        if(usingR) imgData.data[i] = Math.floor(imgData.data[i]/2)*2 + (vals[0]); //r
-        if(usingG) imgData.data[i+1] = Math.floor(imgData.data[i+1]/2)*2 + (vals[1]); //g
-        if(usingB) imgData.data[i+2] = Math.floor(imgData.data[i+2]/2)*2 + (vals[2]); //b
+      //set remaining bits if not leaving as is
+      let val = $('#remainingSelect').val();
+      if(val!=-1) {
+        for(len=imgData.data.length; i<len; i+=4, j++) {
+          //vals to fill this pixel with. either random, all 0s, or all 1s
+          let vals = val==2? [Math.floor(Math.random()*2),Math.floor(Math.random()*2),Math.floor(Math.random()*2)] : [val,val,val];
+          if(usingR) imgData.data[i] = Math.floor(imgData.data[i]/2)*2 + (vals[0]); //r
+          if(usingG) imgData.data[i+1] = Math.floor(imgData.data[i+1]/2)*2 + (vals[1]); //g
+          if(usingB) imgData.data[i+2] = Math.floor(imgData.data[i+2]/2)*2 + (vals[2]); //b
+        }
       }
     }
 
-    /*        
-        let default = val==2? 1*Math.floor(Math.random()*2) : val;*/
+
 
     if(getting) {
       $('#textarea2').val(str);      
@@ -159,7 +162,11 @@ option to encode every x bits, and option to reverse order of input binary or of
 give error alerts if click button with nothjing there
 give error alerts for non binary inside of convert textarea
 
-
+fix error if click convert with no text
 refresh, email, donate, night, fullscreen
+todo: add loader (like songssearcher)
+todo: notes about accepted file types
+add something about the number of bits you can store is equal to 3 times width times height (assuming storing 1 bit in r,g,b)
+option to reverse data encoded or decoded, other stuff,or follow a "key" for which indecies to encode and decode
 */
 
