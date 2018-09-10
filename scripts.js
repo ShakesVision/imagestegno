@@ -1,7 +1,7 @@
 
 //https://stackoverflow.com/questions/22087076/how-to-make-a-simple-image-upload-using-javascript-html
 
-let canvas, ctx, canvas2, ctx2, img;
+let canvas, ctx, canvas2, ctx2, img, fileName;
 
 window.onload = function() {
   canvas = document.getElementById('canvas');
@@ -27,6 +27,8 @@ function handleFile(evt){
     canvas.height = img.height;
     ctx.drawImage(img, 0, 0);
   }
+  fileName = evt.target.files[0].name;
+  console.log(evt.target.files[0]);
   img.src =  URL.createObjectURL(evt.target.files[0]);
 }
 
@@ -97,7 +99,8 @@ function handleDownload() {
     }
   let link = document.getElementById('downloadLink');
   link.href = canvas2.toDataURL();
-  link.download = 'image.png';
+  // link.href = canvas2.toBlob();
+  link.download = fileName.split('.')[0]+'.png'; //todo text area for image name
   link.click();
 }
 
@@ -168,5 +171,7 @@ todo: add loader (like songssearcher)
 todo: notes about accepted file types
 add something about the number of bits you can store is equal to 3 times width times height (assuming storing 1 bit in r,g,b)
 option to reverse data encoded or decoded, other stuff,or follow a "key" for which indecies to encode and decode
+todo: copy and paste buttons for binary decode/encode
+jpgs work pngs dont rn
 */
 

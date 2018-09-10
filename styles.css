@@ -37,3 +37,8 @@ canvas {
 #uploadButton:hover {
 	background-color: #339;
 }
+input[type=checkbox] {
+	margin-right: 10px;
+	width: 20px;
+	height: 20px;
+}

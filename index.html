@@ -29,7 +29,7 @@
 <hr>
 
 <label id="uploadButton" class="btn btn-default btn-lg">
-	<i class="fas fa-upload"></i> Upload Image <i class="fas fa-file-image"></i><input hidden autofocus id="input" type="file" class="form-control input-sm">
+	<i class="fas fa-upload"></i> Upload Image <i class="fas fa-file-image"></i><input hidden autofocus id="input" type="file" accept="image/*" class="form-control input-sm">
 </label>
 
 
@@ -59,8 +59,8 @@ Encoded Image:<br>
       <div class="modal-body">
         Input:<br>
         <textarea id="convertInput" class="form-control"></textarea><br>
-        <input id="convertCheckbox" type="checkbox">Binary to Text<br>
-        <input id="fillCheckbox" type="checkbox">Fill Binary Result into Binary Input<br>
+        <label><input id="convertCheckbox" type="checkbox">Binary to Text</label><br>
+        <label><input id="fillCheckbox" type="checkbox">Fill Binary Result into Binary Input</label><br>
         <button id="getBinaryButton" disabled="true" class="btn btn-sm btn-default">Get Binary from Decoded Binary Input</button><br>
         <button id="convertButton" class="btn btn-sm btn-primary"><i class="fas fa-exchange-alt"></i> Convert</button><br>
         Output:<br>
@@ -120,12 +120,12 @@ Encoded Image:<br>
       </div>
       <div class="modal-body">
         
-        <input id="rCheckbox" checked type="checkbox">Encode/Decode Reds<br>
-        <input id="gCheckbox" checked type="checkbox">Encode/Decode Greens<br>
-        <input id="bCheckbox" checked type="checkbox">Encode/Decode Blues<br>
+        <label><input id="rCheckbox" checked type="checkbox">Encode/Decode Reds</label><br>
+        <label><input id="gCheckbox" checked type="checkbox">Encode/Decode Greens</label><br>
+        <label><input id="bCheckbox" checked type="checkbox">Encode/Decode Blues</label><br>
 
         Remaining Bits:
-        <select id="remainingSelect"> 
+        <select class="form-control" id="remainingSelect"> 
         	<option value="-1">Leave as is</option>
         	<option value="0">Make 0s</option>
         	<option value="1">Make 1s</option>
