@@ -173,5 +173,8 @@ add something about the number of bits you can store is equal to 3 times width t
 option to reverse data encoded or decoded, other stuff,or follow a "key" for which indecies to encode and decode
 todo: copy and paste buttons for binary decode/encode
 jpgs work pngs dont rn
+give length of output after convert
+show length of input and ooutput in top textboxes
+fill result into input make into button
 */
 
