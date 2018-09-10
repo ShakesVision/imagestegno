@@ -176,5 +176,6 @@ jpgs work pngs dont rn
 give length of output after convert
 show length of input and ooutput in top textboxes
 fill result into input make into button
+option to upload image via link
 */
 
