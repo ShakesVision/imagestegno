@@ -5,7 +5,8 @@ body {
 	margin: 20px;
 }
 h1,h2,h3,h4,h5,h6,p, label, input, .btn, .btn.active, select, option {
-	color: #333;
+	//color: #333;
+	color: #0B895E;
 }
 img {
 	-moz-user-select: none;
@@ -30,12 +31,13 @@ canvas {
 }
 #uploadButton {
 	display: block;
-	border: 2px solid #339;
-	background-color: #66c;
+	//border: 2px solid #339;
+	background-color: #0B895E;
 	color: #fff;
 }
 #uploadButton:hover {
-	background-color: #339;
+	//background-color: #339;
+	background-color: #0C4F4E;
 }
 input[type=checkbox] {
 	margin-right: 10px;

@@ -1,6 +1,4 @@
 
-//https://stackoverflow.com/questions/22087076/how-to-make-a-simple-image-upload-using-javascript-html
-
 let canvas, ctx, canvas2, ctx2, img, fileName;
 
 window.onload = function() {
@@ -151,31 +149,4 @@ function binaryToString(str) {
 function handleGetBinary() {
   $('#convertInput').val($('#textarea2').val() );
 }
-
-
-/* TODO
-
-
-OPTIONS
-setting for editing last bit or 2 bits
-give alert if ran out of room to encode
-option to encode remianing bits with 0, 1, leasve as is, or random
-option to encode every x bits, and option to reverse order of input binary or of encoding
-
-give error alerts if click button with nothjing there
-give error alerts for non binary inside of convert textarea
-
-fix error if click convert with no text
-refresh, email, donate, night, fullscreen
-todo: add loader (like songssearcher)
-todo: notes about accepted file types
-add something about the number of bits you can store is equal to 3 times width times height (assuming storing 1 bit in r,g,b)
-option to reverse data encoded or decoded, other stuff,or follow a "key" for which indecies to encode and decode
-todo: copy and paste buttons for binary decode/encode
-jpgs work pngs dont rn
-give length of output after convert
-show length of input and ooutput in top textboxes
-fill result into input make into button
-option to upload image via link
-*/
 
